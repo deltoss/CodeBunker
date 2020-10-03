@@ -1,6 +1,6 @@
 ---
-title: Amazon Route 53 + Netlify
-subtitle: Redirecting Route53 Domain to Netlify Site
+title: Redirecting Amazon Route 53 to Netlify Site
+subtitle: Using AWS with Netlify
 category:
   - AWS
 author: Michael Tran
