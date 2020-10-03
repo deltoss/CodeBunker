@@ -49,7 +49,7 @@ We'll make configuration adjustments on our `Netlify` site:
 1. Login to your Netlify dashboard via <https://app.netlify.com/>.
 2. Navigate to domain settings for the site you want to configure the domain for.
 
-   ![Netlify - Navigating to Domain Management](/uploads/netlify-navigating-to-domain-management.gif "Netlify - Navigating to Domain Management")
+   ![Netlify - Navigate to Domain Management](/uploads/netlify-navigate-to-domain-management.gif "Netlify - Navigate to Domain Management")
 3. From the `Domain Management` page, add your primary domain & any number of [domain aliases](https://docs.netlify.com/domains-https/custom-domains/#definitions). See the below GIF.
 
    ![Netlify - Adding Domain & Domain Aliases](/uploads/netlify-adding-domain-domain-aliases.gif "Netlify - Adding Domain & Domain Aliases")
