@@ -15,8 +15,6 @@ I already had a domain registered with `Amazon Route 53`, but now that I've fini
 
 So I began my journey and went onto the path of fiddling with both `Netlify` and `Amazon Route 53`. I had success with a bit of trial and error, so thought it's a good idea to share how I've done it.
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
 * [Pre-requisites](#pre-requisites)
