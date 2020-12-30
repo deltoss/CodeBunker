@@ -1,6 +1,6 @@
 ---
-title: Identity Server 4 - Claims and Access Tokens
-subtitle: Ways To Add Claims to Tokens
+title: Identity Server 4 - Ways To Add Claims to Access Tokens
+subtitle: Manipulating Claims and Tokens
 category:
   - Identity Server
 author: Michael Tran
