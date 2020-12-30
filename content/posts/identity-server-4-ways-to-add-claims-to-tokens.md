@@ -1,5 +1,5 @@
 ---
-title: Identity Server 4 - Part 01 - Claims and Access Tokens
+title: Identity Server 4 - Claims and Access Tokens
 subtitle: Ways To Add Claims to Tokens
 category:
   - Identity Server
@@ -66,4 +66,47 @@ Claim Type | Description
 `email` | The user's email.
 `role` | The role(s) the user have.
 
-With `Identity Server 4`, how do we go about adding these additional claims to our token? That's what the series is about, exploring & understanding different ways to add claims to the access token.
+With `Identity Server 4`, how do we go about adding these additional claims to our token?
+
+## Solutions
+
+There are quite a few different approaches to manipulating claims so that they'll get added to your tokens.
+
+### Via UserInfo Endpoint
+
+You can use the [UserInfo Endpoint](https://identityserver4.readthedocs.io/en/latest/endpoints/userinfo.html) to get the additional claims for a given access token. This is another HTTP request to the server, but it lets you request claims only when you need it.
+
+See the [UserInfo Example](https://github.com/deltoss/IdentityServer4.Examples.Claims/tree/main/UserInfo%20Endpoint%20Approach/documentation) for more information and example.
+
+### Via API Resources
+
+You can define `API Resources` with their associated claims in your database. That way, whenever you request an access token that corresponds to the API resource, you'd get the claims included as part of that access token.
+
+See the [API Resource Example](https://github.com/deltoss/IdentityServer4.Examples.Claims/tree/main/UserInfo%20Endpoint%20Approach/documentation) for more information and example.
+
+### Via Profile Service
+
+You can implement Identity Server's [IProfileService](https://identityserver4.readthedocs.io/en/latest/reference/profileservice.html) interface. With this approach, it gives you full control, and you can add claims conditionally to the token for both access tokens and identity tokens. You can load data from databases to create your claims and attach it to the token.
+
+> Note 📜
+>
+> Taking this approach means you're basically bypassing user claims associated with API Resources or Identity Resources.
+
+See the [Profile Service Example](https://github.com/deltoss/IdentityServer4.Examples.Claims/tree/main/Profile%20Service%20Approach/documentation) for more information and example.
+
+### Via Profile Service with API Resources and/or UserInfo Endpoint
+
+You may combine implementing the [IProfileService](https://identityserver4.readthedocs.io/en/latest/reference/profileservice.html) so that you can load claims from your own data store, but you leave whether the claims gets added to the access token or identity token based on the Identity Server logic (i.e. based on `API Resources` for access tokens, and `Identity Resources` for identity tokens).
+
+This means essentially, you provide all the claims (loading them from data store(s) if needed), and Identity Server would figure out whether to add them to the token based on:
+
+1. If it's an `access token`, then find the corresponding `API Resource`. If the `API Resource` has user claims defined and the claims exists, add the claim to the token.
+2. If it's an `identity token`, then find the corresponding `Identity Resource`. If the `Identity Resource` has user claims defined and the claims exists, add the claim to the token.
+
+This approach grants you flexibility, but also allows you to adjust what claims gets returned for each client via API resources and/or Identity Resources, potentially via a database or even an Admin UI.
+
+See the [Mixed Profile Service Example](https://github.com/deltoss/IdentityServer4.Examples.Claims/tree/main/Profile%20Service%20Approach/documentation) for more information and example.
+
+## Additional Resources
+
+For more information & examples, see my [examples](https://github.com/deltoss/IdentityServer4.Examples.Claims).
